@@ -11,7 +11,7 @@ import java.util.List;
 import java.util.Optional;
 
 @Controller
-@RequestMapping(path="/bondoc/songs")
+@RequestMapping(path="/songs")
 public class SongController {
     @Autowired
     private SongRepository songRepository;
@@ -20,7 +20,7 @@ public class SongController {
     public ResponseEntity createSong(@RequestBody Song song) throws URISyntaxException {
         Song savedSong = songRepository.save(song);
         return ResponseEntity.ok()
-                .location(new URI("/garcia/songs/" + savedSong.getId()))
+                .location(new URI("/songs/" + savedSong.getId()))
                 .body(savedSong);
     }
 
