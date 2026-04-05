@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.jdbc.DataSourceBuilder;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.context.annotation.Primary;
 import org.springframework.util.StringUtils;
 
 import java.net.URI;
@@ -24,6 +25,7 @@ public class DataSourceConfig {
     private String dbPassword;
 
     @Bean
+    @Primary
     public DataSource dataSource() {
         String url = normalizeDatabaseUrl(databaseUrl);
 
