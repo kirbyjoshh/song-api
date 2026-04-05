@@ -1,7 +1,7 @@
 package com.bondoc.song;
 
 import com.zaxxer.hikari.HikariDataSource;
-import jakarta.sql.DataSource;
+import javax.sql.DataSource;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.jdbc.DataSourceBuilder;
 import org.springframework.context.annotation.Bean;
