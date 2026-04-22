@@ -1,6 +1,5 @@
 package com.bondoc.song;
 
-import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.web.servlet.config.annotation.CorsRegistry;
@@ -12,15 +11,13 @@ public class WebConfig {
     @Bean
     public WebMvcConfigurer corsConfigurer() {
         return new WebMvcConfigurer() {
-            @Value("${ALLOWED_ORIGINS:http://localhost:5173}")
-            private String allowedOrigins;
             @Override
             public void addCorsMappings(CorsRegistry registry) {
-                registry.addMapping("/**") // Allow all endpoints
-                        .allowedOrigins(allowedOrigins.split(",")) // Support multiple origins separated by commas
-                        .allowedMethods("GET", "POST", "PUT", "DELETE", "OPTIONS")
+                registry.addMapping("/**")
+                        .allowedOrigins("https://song-ui-dwrk.onrender.com", "http://localhost:3000", "http://localhost:5173")
+                        .allowedMethods("GET", "POST", "PUT", "DELETE", "HEAD", "OPTIONS")
                         .allowedHeaders("*")
-                        .allowCredentials(true); // If using cookies or authentication headers
+                        .allowCredentials(true);
             }
         };
     }
