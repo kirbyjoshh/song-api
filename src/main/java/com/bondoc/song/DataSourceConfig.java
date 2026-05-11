@@ -87,6 +87,11 @@ public class DataSourceConfig {
                 query = appendQueryParameter(query, "password", password);
             }
 
+            String host = uri.getHost();
+            if (host != null && host.contains("supabase") && !containsSslmode(query)) {
+                query = appendQueryParameter(query, "sslmode", "require");
+            }
+
             if (StringUtils.hasText(query)) {
                 builder.append('?').append(query);
             }
@@ -107,5 +112,9 @@ public class DataSourceConfig {
             return encoded;
         }
         return query + "&" + encoded;
+    }
+
+    private boolean containsSslmode(String query) {
+        return StringUtils.hasText(query) && query.toLowerCase().contains("sslmode=");
     }
 }
